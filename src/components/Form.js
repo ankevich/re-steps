@@ -4,7 +4,7 @@ const Form = () => {
   return (
     <StyledForm>
       <div>
-        <label>Дата</label>
+        <label>Дата (ДД.ММ.ГГ)</label>
         <input />
       </div>
       <div>
@@ -21,7 +21,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
 
   width: 100%;
