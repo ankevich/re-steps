@@ -1,17 +1,45 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const Form = ({ onSubmit }) => {
+  const [date, setDate] = useState("");
+  const [distance, setDistance] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const newItem = {
+      date: event.target.date.value,
+      distance: event.target.distance.value,
+    }
+
+    onSubmit(newItem);
+
+    setDate("");
+    setDistance("");
+  };
+
   return (
-    <StyledForm onSubmit={onSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <div>
         <label>Дата (ДД.ММ.ГГ)</label>
-        <input id = "date"name="date"/>
+        <input
+          id="date"
+          name="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
       </div>
       <div>
         <label>Пройдено км</label>
-        <input id="distance"name="distance"/>
+        <input
+          id="distance"
+          name="distance"
+          value={distance}
+          onChange={(e) => setDistance(e.target.value)}
+        />
       </div>
-      <input type="submit" value="OK"/>
+      <input type="submit" value="OK" />
     </StyledForm>
   );
 };

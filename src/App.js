@@ -7,19 +7,10 @@ import { useState } from "react";
 function App() {
   const [items, setState] = useState(InitiallItems);
 
-  const handleAddItem = (event) => {
-    event.preventDefault();
-    console.log(event.target.date.value);
-    console.log(event.target.distance.value);
-    const newItem = {
-      date: event.target.date.value,
-      distance: event.target.distance.value,
-
-    };
+  const handleAddItem = (newItem) => {
     const newItems = [newItem, ...items];
     setState(newItems);
   };
-
 
 
   return (
