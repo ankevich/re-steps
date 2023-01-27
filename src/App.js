@@ -8,8 +8,19 @@ function App() {
   const [items, setState] = useState(InitiallItems);
 
   const handleAddItem = (newItem) => {
-    const newItems = [newItem, ...items];
-    setState(newItems);
+    const itemWithSameDate = items.find((item) => item.date === newItem.date);
+
+    if (itemWithSameDate) {
+      const newItems = items.map((item) =>
+        item.date === newItem.date
+          ? { ...item, distance: parseInt(item.distance) + parseInt(newItem.distance) }
+          : item
+      );
+      setState(newItems);
+    } else {
+      const newItems = [newItem, ...items];
+      setState(newItems);
+    }
   };
 
   const handleDeleteItem = (index) => {
@@ -17,10 +28,9 @@ function App() {
     setState(newItems);
   };
 
-
   return (
     <Contanier>
-      <Form onSubmit = {handleAddItem}/>
+      <Form onSubmit={handleAddItem} />
       <List items={items} deleteItemByIndex={handleDeleteItem} />
     </Contanier>
   );
@@ -28,8 +38,8 @@ function App() {
 
 const InitiallItems = [
   { date: "01-01-2021", distance: 10 },
-  { date: "01-01-2021", distance: 10 },
-  { date: "01-01-2021", distance: 10 },
+  { date: "01-01-2022", distance: 10 },
+  { date: "01-01-2023", distance: 10 },
 ];
 
 const Contanier = styled.div`
