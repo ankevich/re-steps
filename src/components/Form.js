@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-const Form = () => {
+const Form = ({ onSubmit }) => {
   return (
-    <StyledForm>
+    <StyledForm onSubmit={onSubmit}>
       <div>
         <label>Дата (ДД.ММ.ГГ)</label>
-        <input />
+        <input id = "date"name="date"/>
       </div>
       <div>
         <label>Пройдено км</label>
-        <input />
+        <input id="distance"name="distance"/>
       </div>
-      <button>OK</button>
+      <input type="submit" value="OK"/>
     </StyledForm>
   );
 };
@@ -36,7 +36,8 @@ const StyledForm = styled.form`
     flex-direction: column;
   }
 
-  input, button {
+  input,
+  button {
     border: 2px solid #000;
     border-radius: 8px;
     padding: 16px;
