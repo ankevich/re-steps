@@ -12,11 +12,16 @@ function App() {
     setState(newItems);
   };
 
+  const handleDeleteItem = (index) => {
+    const newItems = items.filter((item, i) => i !== index);
+    setState(newItems);
+  };
+
 
   return (
     <Contanier>
       <Form onSubmit = {handleAddItem}/>
-      <List items={items} />
+      <List items={items} deleteItemByIndex={handleDeleteItem} />
     </Contanier>
   );
 }

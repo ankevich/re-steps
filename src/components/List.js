@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = ({items}) => {
+const List = ({ items, deleteItemByIndex }) => {
   return (
     <StyledContainer>
       <Row>
@@ -8,24 +8,18 @@ const Container = ({items}) => {
         <span>Пройдено км</span>
         <span>Действия</span>
       </Row>
-      <List items = {items}/>
+      <StyledList>
+        {items.map((item, index) => {
+          return (
+            <Row key={index}>
+              <span>{item.date}</span>
+              <span>{item.distance}</span>
+              <span onClick={() => deleteItemByIndex(index)}>❌</span>
+            </Row>
+          );
+        })}
+      </StyledList>
     </StyledContainer>
-  );
-};
-
-const List = ({items}) => {
-  return (
-    <StyledList>
-      {items.map((item) => {
-        return (
-          <Row>
-            <span>{item.date}</span>
-            <span>{item.distance}</span>
-            <span>❌</span>
-          </Row>
-        );
-      })}
-    </StyledList>
   );
 };
 
@@ -38,17 +32,19 @@ const Row = styled.div`
 `;
 
 const StyledList = styled.div`
-border-style: solid;
-border-radius: 8px;
-border-color: #000;
-border-width: 2px;
-padding: 10px;`
+  border-style: solid;
+  border-radius: 8px;
+  border-color: #000;
+  border-width: 2px;
+  padding: 10px;
+`;
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
 
   width: 100%;
-  height: 100%;`
+  height: 100%;
+`;
 
-export default Container;
+export default List;
