@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 const List = ({ items, deleteItemByIndex }) => {
+  
+  const sortedItems = items.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    
+    return dateA - dateB;
+  });
+
   return (
     <StyledContainer>
       <Row>
@@ -9,7 +17,7 @@ const List = ({ items, deleteItemByIndex }) => {
         <span>Действия</span>
       </Row>
       <StyledList>
-        {items.map((item, index) => {
+        {sortedItems.map((item, index) => {
           return (
             <Row key={index}>
               <span>{item.date}</span>
