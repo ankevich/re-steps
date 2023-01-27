@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = () => {
+const Container = ({items}) => {
   return (
     <StyledContainer>
       <Row>
@@ -8,29 +8,23 @@ const Container = () => {
         <span>Пройдено км</span>
         <span>Действия</span>
       </Row>
-      <List />
+      <List items = {items}/>
     </StyledContainer>
   );
 };
 
-const List = (props) => {
+const List = ({items}) => {
   return (
     <StyledList>
-      <Row>
-        <span>20.07</span>
-        <span>12</span>
-        <span>❌</span>
-      </Row>
-      <Row>
-        <span>20.07</span>
-        <span>12</span>
-        <span>❌</span>
-      </Row>
-      <Row>
-        <span>20.07</span>
-        <span>12</span>
-        <span>❌</span>
-      </Row>
+      {items.map((item) => {
+        return (
+          <Row>
+            <span>{item.date}</span>
+            <span>{item.distance}</span>
+            <span>❌</span>
+          </Row>
+        );
+      })}
     </StyledList>
   );
 };

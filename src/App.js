@@ -7,11 +7,17 @@ function App() {
   return (
     <Contanier>
     <Form/>
-    <List/>
+    <List items={items}/>
     </Contanier>
 
     );
 }
+
+const items = [
+  {date:'01-01-2021', distance: 10},
+  {date:'01-01-2021', distance: 10},
+  {date:'01-01-2021', distance: 10}
+]
 
 const Contanier = styled.div`
 display: flex;
